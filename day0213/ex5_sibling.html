@@ -25,8 +25,8 @@
 
         img.onmouseover = function(){
             //nextElementSibiln : 다음 div 태그(.two)
-           this.nextElementSibling.querySelector("h4").style.fontSize="30px";
-           this.nextElementSibling.querySelector("h4").style.backgroundColor="lightgray";
+           this.nextElementSibling.querySelector("h4").style.fontSize="30px";//***************this를 언제 왜 써야하는지
+           this.nextElementSibling.querySelector("h4").style.backgroundColor="lightgray";//**왜 지정한 값 img 쓰면 안됨?
            this.nextElementSibling.querySelector("h4").style.color="blue";
 
            this.nextElementSibling.querySelector(".three>img").style.border="5px solid orange";

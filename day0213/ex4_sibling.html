@@ -22,7 +22,7 @@
     <script>
         document.querySelector("img").onmouseover=function(){
             //사진 다음 엘리먼트 텍스트 얻기
-            var next1=this.nextSibling.innerText;
+            var next1=this.nextElementSibling.innerText;
             //.one에 출력
             document.querySelector(".one").innerText=next1;
             //사진 다음다음 엘리먼트의 텍스트 얻기

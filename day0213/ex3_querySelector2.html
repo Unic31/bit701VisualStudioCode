@@ -54,10 +54,10 @@
     </table>
 
     <script>
-        var tharr = document.querySelectorAll("th.star");
+        var tharr = document.querySelectorAll("th.star");//th안에 star 다 모아서 배열로 만듬
        
 
-        for(var thElement of tharr){
+        for(var thElement of tharr){ //배열의 요소값을 다른이름으로 저장*********************여기도 잘 이해 안됨
             thElement.onmouseover=function(){
                 //하위 태그에서 작은 사진의 src값
                 var smallSrc=this.querySelector("img").getAttribute("src")//getAttribute생략하고src만 써도됨

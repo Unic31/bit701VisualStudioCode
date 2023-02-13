@@ -25,7 +25,7 @@
         window.onload=function(){
             //기본 클래스명인 message는 기본으로 준다
             //.message 중 첫번째 요소값만 얻기
-            var m=document.querySelector(".message");
+            var m=document.querySelector(".message");//*******이걸SelectorAll이라고 바꾸면 밑에 var선언을 해줘서 바꿔줘야됨?
             m.onmouseover=function(){
                 this.setAttribute("class","message line1");
             }
@@ -40,7 +40,7 @@
         for(var p of photos){
             p.onmouseover=function(){
                 //기존이미지를 얻어 놓는다
-                pre_image=this.getAttribute("src");
+                /*var*/pre_image=this.getAttribute("src");//*********************왜 p 가 아니라 this?
                 console.log(pre_image);
                 //새로운 이미지로 변경
                 this.setAttribute("src","../image/animal/C8.png");
@@ -55,7 +55,7 @@
     </script>
 </head>
 <body>
-    <div class="message line2"> <!--message란 class도 line2라는 class도 있는 상태라는것-->
+    <div class="message line2"> <!--message란 class도, line2라는 class도 있는 상태라는것-->
         오늘은 즐거운 월요일입니다
     </div>
     <div class="message">
