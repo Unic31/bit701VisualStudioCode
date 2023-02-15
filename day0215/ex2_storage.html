@@ -38,7 +38,10 @@
             //localStorage에 값을 저장하는 방법이 3가지가 있다
             //localStorage는 내가 지우지 않으면 영구적으로 남아있다
             localStorage.setItem("loginid","master");
+
+            localStorage.Key="Value"
             localStorage.address="서울시 강남구"
+
             localStorage["hp"]="010-1111-2222";
 
             sessionStorage.className="Java701";//브라우저를 닫으면 제거된다
@@ -47,6 +50,7 @@
         document.getElementById("btndel").onclick=function(){
             //address를 지워보자
             localStorage.removeItem("address");
+            localStorage.removeItem("Key");
         }
         document.getElementById("btnalldel").onclick=function(){
             //전레 로컬스트리지 삭제
@@ -57,11 +61,13 @@
             let loginid=localStorage.getItem("loginid");
             let address=localStorage.address;
             let hp=localStorage["hp"];
+            let 담을값=localStorage.Key;
 
             document.getElementById("view").innerText=
             `login : ${loginid} 
             address : ${address}
-            hp : ${hp}`//null 이랑 undefined가 나오지만 둘 다 null로 받아진다. (함수쓸때null써도 될듯)*
+            hp : ${hp}
+            Key : ${담을값}`//null 이랑 undefined가 나오지만 둘 다 null로 받아진다. (함수쓸때null써도 될듯)*
         }
 
     </script>
