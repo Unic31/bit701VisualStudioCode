@@ -11,7 +11,7 @@
     <title>Document</title>
     <style>
         #box {
-            border: solid;
+            border: none;
             display: flex;
             justify-content: space-around;
             align-items: center;
