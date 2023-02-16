@@ -6,31 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   <style>
+    .one{
+        display: inline;
+    }
+    .two{
+        display: inline;
+    }
+   </style>
 </head>
 
 <body>
+    <div class="one">
+        asdf
+    </div>
+    <div class="two">
+        1234
+    </div>
     <script>
-        var arr1 = ["red","green","blue","gray","orange"];
-
-        var arr2 = new Array();
-        arr2.push("../image/food/2.jpg");
-        arr2.push("../image/food/5.jpg");
-        arr2.push("../image/animal/C1.png");
-        arr2.push("../image/moviestar/5.jpg");
-
-        for(var i=0;i<arr1.length;i++){
-        document.write(`<h2 style="background-color:${arr1[i]}">${arr1[i]}</h2>`)
-        }
-        
-        document.write("<hr>");
-
-        for(var photo of arr2){
-        document.write(`<img width=100 src="${photo}">`);
-        }
-
-        for(var abc in arr2){
-            document.write(`<img width=100 src="${arr2[abc]}">`)
-        }
+      
     </script>
 </body>
 
