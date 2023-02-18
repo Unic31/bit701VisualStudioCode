@@ -44,7 +44,8 @@
             });
             //6.ul의 li에 마우스를 올리면 글자색이 빨강으로 벗어나면 다시 원래색으로 변경
             $("ul li").mouseover(function () {
-                $(this).css("color","red")
+                $(this).css("color","red").css("width","50x")
+                //$("ul li").css("color","red") 이걸 사용할 경우 마우스 올리면 li전체가 바뀌므로 마우스 올린곳만 변경하기 위해서 this 사용
             });
 
             $("ul li").mouseout(function () {
