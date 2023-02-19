@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   <style>
-    .one{
-        display: inline;
-    }
-    .two{
-        display: inline;
-    }
-   </style>
 </head>
-
 <body>
-    <div class="one">
-        asdf
-    </div>
-    <div class="two">
-        1234
-    </div>
     <script>
-      
-    </script>
-</body>
+        var arr2=new Array();
+        arr2.push("../image/food/2.jpg");
+        arr2.push("../image/food/5.jpg");
+        arr2.push("../image/animal/C1.png");
+        arr2.push("../image/moviestar/5.jpg");       //push로 arr2라는 배열에 네개를 담은것
 
+        //arr2 배열에 있는 이미지를 출력하시오(width="100" 으로 지정)
+        document.write("<hr>");
+
+    
+        for(var myphoto of arr2){ //arr2의 값을 myphoto로 지정
+            document.write(`<img width=100 src="${myphoto}">`);
+        }
+        document.write("<hr>");
+
+        document.write(`< img width=100 src="${arr2}" >`);
+
+        document.write("<hr>");
+        for(var idx in arr2){
+            arr2.pop();
+            document.write(`<img width=100 src=${arr2[idx]}>`)
+        }
+        document.write("<hr>");
+        for(var i=0;i<arr2.length;i++){
+            document.write(`<img width="100"  src=${arr2[i]}>`)
+        }
+    </script>
+    
+</body>
 </html>
