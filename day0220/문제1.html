@@ -63,7 +63,10 @@
             "position": "absolute",
             "left": "400px",
             "top": "100px",
-            "border":"2px solid black"
+            "border": "2px solid black",
+            "width": "400px",
+            // "height": "200px",
+            "padding": "10px"
         });
 
 
@@ -79,27 +82,34 @@
         //마우스 위치 위의 사진을 우측 사진에 나오게 하고
         //아래의 h4,위의 h3 값을 얻어서 우측태그에 넣기
 
-        $("div.one h2").mouseover(function () {
+        $("div.one h2").hover(function () {
             let color = $(this).next().attr("color")
             console.log(color);
             $(this).css("background-color", color);
+            
 
             let img = $(this).parent().prev().attr("src")
+            // let img = $(this).parent().siblings("img").attr("src")
             console.log(img);
-            $("div.two img").attr("src",img);
 
-            let text1 = $(this).next().text();
+            $("div.two img").attr("src", img);
+
+            // let text1 = $(this).next().text();
+            let text1 = $(this).siblings().text();
             $("div.two h2").text(text1);
 
-            let text2 = $(this).parent().prev().prev().text();
+            // let text2 = $(this).parent().prev().prev().text();
+            let text2 = $(this).parent().siblings("h3").text();
             $("div.two h3").text(text2);
 
 
 
 
 
-
-        })
+        }, function () {
+            $(this).css("background-color", "#fff")
+        }
+        )
     </script>
 </body>
 

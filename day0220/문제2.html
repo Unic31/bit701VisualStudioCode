@@ -11,12 +11,21 @@
         href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap"
         rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    
 
     <style>
         body,
         body * {
             font-family: 'Jua';
         }
+
+        table tr{
+            height:100px;
+            line-height: 100px;
+            font-size: 30px;
+        }
+
+
     </style>
 
 </head>
@@ -34,21 +43,21 @@
     -->
     <h1>여기에 출력</h1>
     <br>
-    <table style="width:500px;height:500px;font-size: 30px; text-align:center">
+    <table style="width:500" class="table table-bordered" >
         <script>
+            //1~100사이의 중복되지 않은 난수 25개를 구한다
             let nums = new Array(25);
             for (let i = 0; i < nums.length; i++) {
-                nums[i] = parseInt(Math.random() * 100) + 1;
+                nums[i] = parseInt(Math.random() * 100) + 1;//0~99에다가 +1
                 for (let j = 0; j < i; j++)
                     if (nums[i] == nums[j]) {
                         i--;
                         break; 
                     }
             }
+            console.log((nums));//확인
 
-            // for(let a of nums) {
-            //     console.log(a);
-            // }
+            let idx=0;
 
             for (let row = 1; row <= 5; row++) {
                 document.write("<tr>");
@@ -60,19 +69,29 @@
 
      
 
-                    document.write(`<td style="border:1px solid black;color:rgb(${r},${g},${b})">`);
+                    // document.write(`<td align=center style='background-color:rgb(${r},${g},${b})'>`);
+                    document.write("<td align=center style='background-color:rgb("+r+","+g+","+b+")'>"+nums[idx++]+"</td>");
 
-                    document.write(nums.pop())
+                    // document.write(nums.pop())
                     console.log(nums.length)
 
                     document.write("</td>");
                 }
                 document.write("</tr>");
             }
-            $("td")
+            $("td").mouseover(function(){
+                let color = $(this).css("background-color")
+                // let color = $(this).attr("style")
+                console.log(color)
+                // $(this).parent().parent().parent().prev().prev().find("h1").html(`<style="color:${color}>`)
+                $("h1").html(color)
+                $("h1").css("background",color)
+            })
         </script>
 
     </table>
+
+    
 
 </body>
 

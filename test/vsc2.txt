@@ -4,10 +4,11 @@
 쉬프트 컨트롤 + 방향키 = 구간선택
 
 
-부트스트랩 5
+<!--부트스트랩 5-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-jquery
+<!--jquery-->
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
 
 태그(요소 Element) : <>
 속성(Property): style src width 등 태그 안에 쓰는것.   : 뒤에는 Value(값(수치)가 와야됨).
@@ -62,7 +63,6 @@ function(isNaN(A)){
 <b id="irum"></b>            //<b>asdf</b> 라고 출력됨
 irum.innerText = "asdf";
 
-버튼의 종류
 
 a:link{ 클릭전,              a:visited{ 클릭후,             a:hover{마우스 올렸을때
 <a href="http://www.naver.com">Naver</a>               //클릭시 현재 페이지가 네이버 페이지로 전환
@@ -129,6 +129,20 @@ figure>img{                      // > 는 바로 아래의 하위태그를 의�
  </tr>
 </table>
 
+*************************5x5 Table예시****************************
+<table style="width:500">
+<script>
+for (let row = 1; row <= 5; row++) {
+	document.write("<tr>");
+for (let col = 1; col <= 5; col++) {
+	document.write(`<td><h1>asdf</h1>`);
+	document.write("</td>");
+}document.write("</tr>");
+}
+</script>
+</table>
+****************************************************************
+
      
 var A = B.getAttribute("src")11     //A의 값은 B의 src값 이라고 선언(getAttribute는 속성값을 얻어옴)               //get시리즈는 변수를 받아야 해서
 var A = document.getElementById("B");      //A의 값은 "B"의 요소값이다 라고 선언(getElementById는 해당 태그에 접근)  //태그? 변수? var? 있어야함
@@ -137,6 +151,7 @@ var s = p1.getAttribute("src");           //s값은 p1의 src속성이다 라고
 var s2 = star.innerText;                    //s2값은 starr의 text값 이라고 선언
 
 var A = document.getElementById("B");      //A의 값은 "B"의 요소 라고 선언(getElementById는 해당 태그에 접근)
+
 *****************************************************************************************************
 **특정요소에서 속성의 값을 반환하면 그 값을 받는다
 변수명=요소값.getAttribute("속성값")
@@ -254,7 +269,7 @@ arr[2]="grenn";
 var arr = new Array();
 arr.push(1);      //psuh는 차례대로   
 arr.push(2);      //0번째 부터       
-arr.push(3);      //데이터가 출력됨   
+arr.push(3);      //데이터가 추가됨 
 arr.push(4);
 
 var arr = new Array();
@@ -275,7 +290,7 @@ for(var a of arr)  //var a of arr 은 arr을 a에 담는다는 뜻. 배열에 �
 fonr(var idx in arr)   //arr의 데이터의 인덱스 값이 idx 로 넘어간다. 0, 1, 2, 3....
     document.write(`<div>${idx}:${arr[idx]}</div>`)
 
-*****배열 예시*****
+*********************************배열 예시**************************************
 
 var arr2=new Array();
         arr2.push("../image/food/2.jpg");
@@ -296,6 +311,17 @@ var arr2=new Array();
         for(var i=0;i<arr2.length;i++){
             document.write(`<img width="100"  src=${arr2[i]}>`)
         }
+
+1~100까지의 숫자를 nums 배열에 25개 중복없이 담는 함수
+ let nums = new Array(25);
+    for (let i = 0; i < nums.length; i++) {
+        nums[i] = parseInt(Math.random() * 100) + 1;
+            for (let j = 0; j < i; j++)
+            if (nums[i] == nums[j]) {
+                i--;
+                break; 
+            }
+    }
 ********************************************************************
 
 
@@ -429,6 +455,11 @@ break;        //남은 코드를 실행하지 않고 조건식으로 이동한�
 continue;//남은 코드를 실행하지 않고 증감식으로 이동한다 
 문장3; 
 } 
+
+------------------------------------------------------------------
+jquery에서 attr은 <h1 style="magenta"> 에서 style에 접근
+jquery에서 css는 css에 접근
+
 
 
 
