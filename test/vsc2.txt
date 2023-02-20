@@ -8,6 +8,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <!--jquery-->
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<!--쌤폰트-->
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+
 
 
 태그(요소 Element) : <>
@@ -30,8 +33,33 @@ X<sup>3</sup> //윗첨자                     X<sub>1</sub>               //아�
 text-decoration: 글자꾸밈(none-꾸민거다없앰,underline-밑줄)
 parentElement:부모태그
 
+display: flex;  /* flex일경우 수평방향 가운데:flex-start,center,space-between,space-around,space-evenly */
+justify-content: space-around; /*아이템들의 "둘레(around)에 균일한 간격"*/
+            
+
 데이터타입:Number String Boolean(true, false)
 
+--------------------------var,let 예시--------------------------------
+var a=1;//메모리에 새로 생성
+let b=2;//메모리에 새로 생성
+
+function test1()
+{
+    var a=3;//새로 생성, 외부의 a와 전혀 다른 변수로 생성
+    let b=4;//새로 생성, 외부의 b와 전혀 다른 변수로 생성
+
+    if(true){
+        var a=5;//덮어써짐, 위에서 a=3이라고 선언한걸 여기에서 a=5라고 선언함으로 덮어써짐.
+        let b=6;//새로생성, b라는 이름만 같을 뿐이지 다름
+        console.log(`a=${a},b=${b}`);//5,6
+    }
+    console.log(`a=${a},b=${b}`);//5,4 //if탈출로 b는 날라가지만 13번줄에서 선언한 a는 5로 계속됨
+}//함수로 빠져나옴으로써 함수 안에서 지정한거 다 날라감
+
+//함수호출
+test1();
+console.log(`a=${a},b=${b}`);//1,2
+------------------------------------------------------------------------
 
 #은 id, .은class
 <pre></pre>   // 프리뷰(보이는 그대로 출력)
@@ -54,9 +82,32 @@ border-collapse: collapse;  //선과 선이 붙음(border의 기본값은 separa
 prompt("A","B")        //A는 출력되는 문구, B는 기입하는곳의 기본 값
 alert("A")          //A라는 알림창이 뜸
 isNaN(A)       //A가 숫자=false, 문자=ture
+overflow : hidden/*넘어가는 만큼 가림. 스크롤도 가능*/
+resize: both; /*사용자의 요소 크기 조정 권한 지정horizontal(옆으로만), vertical(밑으로만), both(위 아래 다 조정가능)*/
 function(isNaN(A)){
     A가 숫자가 아닐 경우 함수
 }
+setInterval(()=>{함수식},1000); //괄호 안 함수를 1초에 한번씩 반복
+
+-Storage-
+Web Storage:클라이언트의 브라우저에 소량의 데이터를 저장해두기 위한 기억공간(자바의 쿠키와 비슷)
+localStorage : 반영구적 보관 크기는 약 5mb
+sessionStorage : 세션이 유효한 만큼만 보관, 창 닫으면 사라짐
+-Storage예시-
+document.getElementById("btnadd").onclick=function(){
+    //localStorage에 값을 저장하는 방법이 3가지가 있다
+    //localStorage는 내가 지우지 않으면 영구적으로 남아있다
+    localStorage.setItem("loginid","master"); //1
+
+    localStorage.Key="Value"            //2
+    localStorage.address="서울시 강남구" //2
+
+    localStorage["hp"]="010-1111-2222"; //3
+
+    sessionStorage.className="Java701";//세션 스토리지는 브라우저를 닫으면 제거된다
+}
+
+
 
 
 
@@ -83,7 +134,7 @@ div.menu>ul>li:hover{      //hover-마우스 올렸을때, active-클릭 했을�
     top:npx;
 }
 
-
+-figure과 figcaption-
 <figure>                      //이미지에 글자 같이 넣기
     <img src="../photo/이미지.jpg">
     <figcaption>
@@ -109,7 +160,7 @@ figure>img{                      // > 는 바로 아래의 하위태그를 의�
 </ul>
 
 
-
+-marquee 왕복움직임
 <marquee direction="right" behavior="alternate" scrollamount="20">   //오른쪽으로, 왕복, 스크롤속도
 						   	     //marquee(움직임)의 기본값은 left, scroll 
                                  
@@ -143,6 +194,111 @@ for (let col = 1; col <= 5; col++) {
 </table>
 ****************************************************************
 
+--------------------------구구단 예시-----------------------
+<b>구구단 숫자 입력 : </b>
+<input type="text" id="gugu" style="width:100px;">
+<div id="result" style="font-size: 2em;">     
+</div>
+<script>
+    document.getElementById("gugu").onkeyup=function(e){
+    var su=e.target.value;//this.value도 가능
+    if(e.keyCode==13){
+        console.log(su);
+//조건1.값이 없을 경우
+    if(su==""){
+        alert("숫자를 입력해 주세요");
+        this.focus();//*********************************필요한가?
+        return;
+    }
+//조건2:숫자가 아닐경우
+    if(isNaN(su)){
+        alert("숫자로만 입력해주세요");
+        this.value="";
+        this.focus();
+        return;
+    }
+//조건3:2~9가 아닐 경우
+    if(su<2 || su>9){
+        alert("2~9사이 숫자만 입력해주세요");
+        this.value="";
+        this.focus();
+        return;
+    }
+    var s=`[${su}단]<br><br>`;
+    for(var i=2;i<=9;i++){
+        s+=`${su} x ${i} = ${su*i}<br>`;
+    }
+    document.getElementById("result").innerHTML=s;
+    }      
+    }
+</script>
+---------------구구단 예시 2번--------------------------------
+<table border="1" style="width:100%;border-collapse: collapse;">
+<caption><b style="font-size: 30px;">구구단출력</b></caption>
+<!--구구단 제목 부분-->
+<tr bgcolor="lightgray">
+<script>
+    for (var dan = 2; dan <= 9; dan++) {
+        document.write(`<th>${dan}단</th>`);
+    }
+</script>
+</tr>
+<script>
+    for (var i=1;i<=9;i++) { /*행*/
+        document.write("<tr align=center>");
+        for (var dan= 2; dan <= 9; dan++) {/*열*/
+            document.write(`<td>${dan}x${i}=${dan*i}</td>`);
+        }
+        document.write("</tr>");
+        }
+</script>
+-----------------------------------------------------------------
+
+-----------------------------현재시간출력-------------------
+//초기 시간 출력
+window.onload=function(){
+ write_timer();
+//1초마다 시간 다시 출력
+setInterval(write_timer,1000);}
+//사용자함수, 호출한 시점에서 사용
+function write_timer(){
+    let today=new Date();/////////////////////////이거왜?
+    let year=today.getFullYear();//현재 년도 4자리를 숫자로 반환
+    let month=today.getMonth()+1;//0~11을 반환, +1을 해줌으로써 1~12
+    let day=today.getDate();//현재날짜
+
+    let hour=today.getHours();
+    let min=today.getMinutes();
+    let sec=today.getSeconds();
+
+    document.querySelector(".timer").innerHTML=
+    `오늘은 ${year}년 ${month}월 ${day}일 입니다<br>
+    ${hour}:${min<10?"0"+min:min}:${sec<10?0+String(sec):sec}`;//(String(sec)가 아니라 그냥sec하면 같은 숫자로
+            //초,분이 한자리수일때                               //인식해서 0+시간=그냥시간 이 되어버림
+            //앞에 0을 넣음          
+
+<div class="timer">00:00:00<div>                               
+}------------------------------------------------------------------------------
+
+
+-transform-
+img{
+transform: translate(50px, 30px); /*x, y좌표만큼 이동*/
+/*크로스 브라우징 테스트를 위해서 아래 코드처럼 넣어주는게 좋다*/
+-webkit-transform: translate(50px, 30px);/*크롬,사파리*/
+-o-transform: translate(50px, 30px);/*오페라*/
+-moz-transform: translate(50px, 30px);/*익스플로러*/
+}
+#img2 img{
+transform: rotate(45deg);/*45도 회전*/
+}
+#img3 img{
+ transform: scale(2);/* 2배 확대 scaleX(2):x방향 으로만 2배 확대 */
+}
+#img4 img{
+transform: skew(30deg, 40deg); /*x, y방향으로 경사변형.skewX:x방향만 변형*/
+}
+
      
 var A = B.getAttribute("src")11     //A의 값은 B의 src값 이라고 선언(getAttribute는 속성값을 얻어옴)               //get시리즈는 변수를 받아야 해서
 var A = document.getElementById("B");      //A의 값은 "B"의 요소값이다 라고 선언(getElementById는 해당 태그에 접근)  //태그? 변수? var? 있어야함
@@ -163,11 +319,10 @@ var A = document.getElementById("B");      //A의 값은 "B"의 요소 라고 �
 요소값.innerHTML="html을 포함한 문자열";
 예시)   a.innerHTML="happy<br>nice";        happy
                                     출력=>  nice
-        a.innerHTML+="br>하하하";           하하하
+        a.innerHTML+="<br>하하하";           하하하
 
         또는 es6의 리터럴 문자 사용
-        a.innerHTML=`happy<br>
-        nice
+        a.innerHTML=`happy<br>nice`
 
 **특정 요소 안에 단순한 텍스트만 넣으려면
 요소값.innerText="문자열"
@@ -198,6 +353,8 @@ var A = document.getElementById("B");      //A의 값은 "B"의 요소 라고 �
             Number("7.5"); =>숫자 7.5를 반환
 ****************************************************************************************
 
+
+-select-
 <select id="selborder">                             //select 예시
         <option selected disabled hidden>select border</option> <!--첫줄 고정 제목을 추가--><!--시작값 선택불가 사라짐-->
         <option value="5px inset gray">테두리선1</option>
@@ -212,6 +369,7 @@ var A = document.getElementById("B");      //A의 값은 "B"의 요소 라고 �
          document.getElementById("animal").style.border=this.value;
         }
  </script>
+
 
 A.onfocus = function () {      //A클릭시 발생하는 이벤트
 B.onblur = function () {	//B갔다가 B에서 벗어나 다른곳 클릭시 발생하는 이벤트
@@ -237,27 +395,7 @@ document.write('<div style="color:red">'+sum(2,3)+'</div>')
 document.write('<div style="font-size:3rem">'+sum(2,3)+'</div>')
 
 
-반복식 while
--예제1번
-var a=0
-while(true)
-{
-    a++;
-    if(a%2==1)
-    continue; //홀수면 조건식으로 가라->처음으로 돌아가라
-    console.log(a);
-    if(a==10)
-    break;
-}
-console.log()에는 2 4 6 8 10 이 있을것.
 
--예저2번
-var b = ["1", "2", "3", "4","5"]
-var i = 0;                //i의 초기값을 정해준 뒤
-while (i < b.length) {    //i++처럼 갯수 늘려가며 배열b의 길이만큼 반복
-    document.write("<li>" + b[i] + "</li>");
-    i = i + 1 //i++;
-}
 
 배열 : 같은 형 같은 길이의 데이터를 2개 이상 붙여서 동일한 변수로 처리
 
@@ -312,6 +450,13 @@ var arr2=new Array();
             document.write(`<img width="100"  src=${arr2[i]}>`)
         }
 
+랜덤한 수(난수) 출력 예제
+for(let i=1;i<=X;i++){
+    let r=parseInt(Math.random()*100);
+    console.log(r);
+} //0~99까지의 난수 X개 출력
+
+
 1~100까지의 숫자를 nums 배열에 25개 중복없이 담는 함수
  let nums = new Array(25);
     for (let i = 0; i < nums.length; i++) {
@@ -322,6 +467,19 @@ var arr2=new Array();
                 break; 
             }
     }
+<위와 같은 난수 중복처리 예제
+var nums=new Array(5);
+for(let i=0;i<nums.length;i++){             
+    nums[i]=parseInt(Math.random()*10)+1;            //i번지 배열에 1~10사이의 난수값을 저장한다
+ 
+    for(let j=0;j<i;j++){    //중복처리:이전 배열에 같은값이 있을 경우 다시 구한다
+        if(nums[i]==nums[j]){
+            i--;                 //break 후 i++로 이동 하므로 일단 1을 빼준다(다시 제자리로 가게하기 위해서)
+            break;              //현재 for문을 빠져나간다
+        }
+    }
+}console.log(nums); //출력
+
 ********************************************************************
 
 
@@ -355,24 +513,6 @@ table 다시 공부----------------
 배열 다시 공부----------------("A"+i+"B")랑 (`A${i}B`)연습하기
 for문 자세히 공부--------------
 
-랜덤한 수(난수) 출력 예제
-for(let i=1;i<=X;i++){
-    let r=parseInt(Math.random()*100);
-    console.log(r);
-} //0~99까지의 난수 X개 출력
-
-난수 중복처리 예제
-var nums=new Array(5);
-for(let i=0;i<nums.length;i++){             
-    nums[i]=parseInt(Math.random()*10)+1;            //i번지 배열에 1~10사이의 난수값을 저장한다
- 
-    for(let j=0;j<i;j++){    //중복처리:이전 배열에 같은값이 있을 경우 다시 구한다
-        if(nums[i]==nums[j]){
-            i--;                 //break 후 i++로 이동 하므로 일단 1을 빼준다(다시 제자리로 가게하기 위해서)
-            break;              //현재 for문을 빠져나간다
-        }
-    }
-}console.log(nums); //출력
 
 엔터입력에 반응하여 함수 예제
 doccument.getElementById("ID").onkeyup = function(e){
@@ -381,7 +521,6 @@ doccument.getElementById("ID").onkeyup = function(e){
 		document.querySelector("A").innerHTML = v; //엔터키 입력하고 출력
 	}
 }
-
 
 
 ----------------------------조건식--------------------------------------------
@@ -424,6 +563,27 @@ default:
 조건이 맞을 동안 실행할 문장들 
 } 			//위의 조건이 거짓이 되는 순간 while 문을 빠져 나온다 
 
+-예제1번
+var a=0
+while(true)
+{
+    a++;
+    if(a%2==1)
+    continue; //홀수면 조건식으로 가라->처음으로 돌아가라
+    console.log(a);
+    if(a==10)
+    break;
+}
+console.log()에는 2 4 6 8 10 이 있을것.
+
+-예제2번
+var b = ["1", "2", "3", "4","5"]
+var i = 0;                //i의 초기값을 정해준 뒤
+while (i < b.length) {    //i++처럼 갯수 늘려가며 배열b의 길이만큼 반복
+    document.write("<li>" + b[i] + "</li>");
+    i = i + 1 //i++;
+}
+
 -do~while                    //선 실행 후 조건 비교(조건이 뒤에와 한번은 무조건 실행) 
 do{
 조건이 맞을 동안 실행할 문장들 
@@ -457,8 +617,140 @@ continue;//남은 코드를 실행하지 않고 증감식으로 이동한다
 } 
 
 ------------------------------------------------------------------
+
+-----------------------반응형 미디어 쿼리 예시----------------------------
+/*1024 이상*/
+@media all and (min-width:1024px) {
+    body {
+        background: url("../image/div_img/beauty2.jpg") no-repeat;
+        background-size: cover;
+        }
+@media all and (min-width:761px) and (max-width:1023px){
+    body{
+        background-color: orange;
+        }
+    h1{
+        background-color: aqua;
+        color: blue;
+        }
+    }
+/*761미만*/
+@media all and (max-width:760px){
+    body{
+        background-image: url("../image/animal/C8.png");
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        }          
+    h1{
+        background-color: #000;
+        color: #fff;
+        font-family: 'Gamja Flower';
+        }
+    }
+
+
+
+-----------------------------jquery--------------------------
+
+$(function(){}    //윈도우 출력시 함수 불러오기.window.onload와 같음
+
+let code = prompt("")
+$("div:N").M(code)
+N == last():마지막, first(),ea(0):첫번째
+     even():짝수, odd():홀수, lt():미만, gt():초과 
+M == addClass("a") : a라는 클래스 추가
+     addClass("a b") : a, b 클래스 2개 추가
+     removeClass("a") : a 클래스 제거
+     removeClass("a b") : a, b클래스 제거
+     removeClass() : 적용된 모든 클래스 제거
+     toggleClass("a") : a 클래스가 적용됐다/제거됐다 반복
+     append():이미 있는거에 추가, html,text():지우고 새로들어감
+     before():바로 앞에 들어가서 원래 있던게 앞으로 밀림, 이미 있는거에 추가
+     after():바로 뒤에 들어가서 원래 있던게 뒤로 밀림, 이미 있는거에 추가
+next:다음태그, prev:이전태그, find,children:하위태그에서 검색
+parent:부모태그, siblings:형제태그 //siblings("figcaption"):형제태그 중 figcaption
+
 jquery에서 attr은 <h1 style="magenta"> 에서 style에 접근
 jquery에서 css는 css에 접근
+
+------------------------jquery 기본 함수 모양
+$("h1").mouseover(function () {
+//마우스가 올라가 있는 해당 요소만 변경을 해야 한다
+     $(this).css({
+        "cursor": "pointer",
+        "border": "10px groove red",
+        "background-color": "rgba(255,123,211,0.5)"
+    });
+});
+
+-------------------------------jquery에서 json함수 예시
+let array3=[    //키:밸류, 키:밸류 --이걸 json 이라 부름
+    {"message":"Hello","color":"red"},
+    {"message":"안녕하세요","color":"green"},
+    {"message":"반가워요","color":"pink"}
+];
+
+------------------------json함수 배열다수 each두번쓰기 예시1
+let data2=[
+    {"name":"김태희","score":[90,100,80],"hp":"010-222-3333"},
+    {"name":"한가인","score":[90,87,70],"hp":"010-444-5555"}
+];
+$.each(data2,function(idx,item){                  //이해 다시하기
+    let s2=`이름:${item.name},점수3과목:`  // let s2="이름:"+item.name+";점수3과목";
+    $.each(item.score,function(idx2,jumsoo){
+        s2+=jumsoo+"&nbsp;";
+    });
+    s2+=`핸드폰:${item.hp}<br>` // s2+="핸드폰:"+item.hp+"<br>";
+    $("#show2").append(s2);
+});
+
+---------------------------json함수 배열다수 each두번쓰기 예시2
+let maindata = [{
+    "part": "animal",
+    data: ["../image/animal/C1.png", "../image/animal/C6.png", "../image/animal/C8.png"]
+    },
+    {
+    "part": "food",
+    data: ["../image/food/1.jpg", "../image/food/3.jpg", "../image/food/11.jpg", "../image/food/12.jpg"]
+    },
+    {
+    "part": "shop",
+    data: ["../image/shop/14.jpg", "../image/shop/30.jpg"]
+    }
+}];
+$.each(maindata, function (idx, item) {
+    let s = `<div><span class="title">${item.part}</span>`;
+    $.each(item.data, function (idx2, photo) {
+        s += `
+        <img src="${photo}" class="photo img-thumbnail">
+        `;
+    });
+    s += "<br><br></div>";
+    $("#show").append(s)
+})
+
+------------------------json함수 사진과 이름 적용 예시
+let todayhome = [{
+    "img":"사진경로",
+    "title":"제목"         
+}]    //반복
+$.each(todayhome, function (idx, item) {
+    let s = 
+        `<figure>
+            <img src="${item.img}">
+            <figcaption>
+                <span>
+                ${item.title}
+                </span>
+            </figcaption>
+            </figure>`
+$("#show").append(s)
+});
+
+
+$("div.box>img").each(function(idx){
+    $(this).attr("src","../image/shop/"+(idx+1)+".jpg");
+})
 
 
 

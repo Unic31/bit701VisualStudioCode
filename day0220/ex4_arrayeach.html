@@ -44,7 +44,7 @@
 
     </script>
     <hr>
-    <div class="two"></div>
+    <div class="two" style="clear:both"></div>
     <script>
         let array2 = new Array();
         array2.push("../image/animal/C8.png");
@@ -65,10 +65,14 @@
     <script>
         //배열에 json 형태의 데이터 넣기
         let array3=[ //키:밸류, 키:밸류 --이걸 json 이라 부름
-            {"message":"Hello","color":"red"}
-            {"message":"안녕하세요","color":"green"}
+            {"message":"Hello","color":"red"},
+            {"message":"안녕하세요","color":"green"},
             {"message":"반가워요","color":"pink"}
         ];
+
+        $.each(array3,function(idx,item){
+            $("div.three").append("<h3 style='color:"+item.color+"'>"+item.message+"</h3>");
+        });
     </script>
 </body>
 
