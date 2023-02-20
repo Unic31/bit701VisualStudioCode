@@ -17,7 +17,11 @@
 속성(Property): style src width 등 태그 안에 쓰는것.   : 뒤에는 Value(값(수치)가 와야됨).
 같은 속성을 주는 예시 ex) style="color:blue;background-color:balck" 처럼 여러개 쓸때는 사이에 ;
 
-메소드=함수=명령
+함수=명령
+객체에 속해있는 함수=메소드
+
+var A = {객체}
+var B = [배열]
 
 선택자 우선순위=id>class>tag
  
@@ -397,7 +401,7 @@ document.write('<div style="font-size:3rem">'+sum(2,3)+'</div>')
 
 
 
-배열 : 같은 형 같은 길이의 데이터를 2개 이상 붙여서 동일한 변수로 처리
+-------------------------[배열] : 같은 형 같은 길이의 데이터를 2개 이상 붙여서 동일한 변수로 처리------------------------
 
 var arr = new Array(2); //3개의 데이터를 담을 배열 생성
 arr[0]="red";
@@ -480,8 +484,35 @@ for(let i=0;i<nums.length;i++){
     }
 }console.log(nums); //출력
 
-********************************************************************
+*****************************************************************************************
 
+-----------------------{객체}object:순서가 정해지지 않은 수납상자. 폴더처럼 쓸수잇음, 함수 등 담아서?-----------------------
+객체에 소속된 함수 = 메소드
+객체에 소속된 변수 = 프로퍼티
+
+var coworkers = {      //객체 생성
+        "programmer":"egoing",  //"KEY":"Value"
+        "designer":"leezche"
+      };
+      document.write("programmer : "+coworkers.programmer+"<br>");
+      document.write("designer : "+coworkers.designer+"<br>");
+      coworkers.bookkeeper = "duru";//객체에 추가
+      document.write("bookkeeper : "+coworkers.bookkeeper+"<br>");
+      coworkers["data scientist"] = "taeho";//객체에 띄어쓰기가 포함된 추가
+      document.write("data scientist : "+coworkers["data scientist"]+"<br>");
+객체 데이터 순회
+    for(var key in coworkers) {  //배열에선 순서대로라 idx를 쓰지만 객체에선 key
+        document.write(key+' : '+coworkers[key]+'<br>');  //순서가 정해지지 않음
+      }
+객체 함수
+coworkers.showAll = function(){}, var showAll = function(){}, function showAll(){} 이 세개는 같다.
+
+
+
+
+
+
+------------------------------------------------------------------------------
 
 querySelector로 id를 가져왔을땐(#id)-받을땐id.이나 this. 둘 다로 받아도됨
 querySelector로 class를 가져왔을땐(.class)-받을땐 this. 로만 받아야됨
