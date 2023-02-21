@@ -10,8 +10,9 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <!--쌤폰트-->
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+<script>
 
-
+</script>
 
 태그(요소 Element) : <>
 속성(Property): style src width 등 태그 안에 쓰는것.   : 뒤에는 Value(값(수치)가 와야됨).
@@ -698,10 +699,12 @@ M == addClass("a") : a라는 클래스 추가
      append():이미 있는거에 추가, html,text():지우고 새로들어감
      before():바로 앞에 들어가서 원래 있던게 앞으로 밀림, 이미 있는거에 추가
      after():바로 뒤에 들어가서 원래 있던게 뒤로 밀림, 이미 있는거에 추가
-next:다음태그, prev:이전태그, find,children:하위태그에서 검색
-parent:부모태그, siblings:형제태그 //siblings("figcaption"):형제태그 중 figcaption
+next():다음태그, prev():이전태그, find,children:하위태그에서 검색
+parent():부모태그, siblings():형제태그 //siblings("figcaption"):형제태그 중 figcaption
+parents("figure.photo")); //부모태그들 중 figure.photo
 
-jquery에서 attr은 <h1 style="magenta"> 에서 style에 접근
+jquery에서 attr은 <h1 style="magenta"> 에서 style에 접근. 값이 하나면 반환, 두개면 변경
+jquery에서 prop는 true, false 값 변경시 사용. 값이 하나면 반환, 두개면 변경
 jquery에서 css는 css에 접근
 
 ------------------------jquery 기본 함수 모양
