@@ -37,7 +37,7 @@ X<sup>3</sup> //윗첨자                     X<sub>1</sub>               //아�
 text-decoration: 글자꾸밈(none-꾸민거다없앰,underline-밑줄)
 parentElement:부모태그
 
-display: flex;  /* flex일경우 수평방향 가운데:flex-start,center,space-between,space-around,space-evenly */
+display: flex;  부모태그에 주는것/* flex일경우 수평방향 가운데:flex-start,center,space-between,space-around,space-evenly */
 justify-content: space-around; /*아이템들의 "둘레(around)에 균일한 간격"*/
             
 
