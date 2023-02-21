@@ -86,13 +86,15 @@ opacity:n; //이미지 흐리게(0~1까지)
 border-collapse: collapse;  //선과 선이 붙음(border의 기본값은 separate)
 prompt("A","B")        //A는 출력되는 문구, B는 기입하는곳의 기본 값
 alert("A")          //A라는 알림창이 뜸
-isNaN(A)       //A가 숫자=false, 문자=ture
 overflow : hidden/*넘어가는 만큼 가림. 스크롤도 가능*/
 resize: both; /*사용자의 요소 크기 조정 권한 지정horizontal(옆으로만), vertical(밑으로만), both(위 아래 다 조정가능)*/
+isNaN(A)       //A가 숫자=false, 문자=ture
 function(isNaN(A)){
     A가 숫자가 아닐 경우 함수
 }
 setInterval(()=>{함수식},1000); //괄호 안 함수를 1초에 한번씩 반복
+
+
 
 -Storage-
 Web Storage:클라이언트의 브라우저에 소량의 데이터를 저장해두기 위한 기억공간(자바의 쿠키와 비슷)
@@ -705,7 +707,7 @@ parents("figure.photo")); //부모태그들 중 figure.photo
 
 jquery에서 attr은 <h1 style="magenta"> 에서 style에 접근. 값이 하나면 반환, 두개면 변경
 jquery에서 prop는 true, false 값 변경시 사용. 값이 하나면 반환, 두개면 변경
-jquery에서 css는 css에 접근
+jquery에서 css는 css에 접근. 값이 하나면 반환, 두개면 추가
 
 ------------------------jquery 기본 함수 모양
 $("h1").mouseover(function () {
@@ -717,12 +719,36 @@ $("h1").mouseover(function () {
     });
 });
 
+
+--------------------------------jquery에서 hover예시
+$("img").hover(function(){     
+$(this).addClass("selected");  //mosueover
+photo=$(this).attr("src"); //기존사진소스 저장, 자바스크립트에서 let안붙이면 자동으로 전역변수가 된다
+$(this).attr("src","../image/animal/C1.png"); //다른사진으로 변경
+},function(){
+$(this).removeClass("selected");    //mouseout
+$(this).attr("src",photo);     //다시 원래 사진으로, 위에서 let 안붙여서 전역변수가
+})                                  //됐으므로 여기서도 쓸수잇음
+
+
 -------------------------------jquery에서 json함수 예시
 let array3=[    //키:밸류, 키:밸류 --이걸 json 이라 부름
     {"message":"Hello","color":"red"},
     {"message":"안녕하세요","color":"green"},
     {"message":"반가워요","color":"pink"}
 ];
+
+
+----------------------------------jquery에서 each문 예시1
+$("div").each(function(idx){   //div 갯수만큼 반복한다는것
+$(this).text(idx+1)            
+//rgb값 랜덤하게 구해서 배경색으로 넣기
+let r = parseInt(Math.random()*256);
+let g = parseInt(Math.random()*256);
+let b = parseInt(Math.random()*256);
+let bg=`rgb(${r},${g},${b})`;
+$(this).css("background-color",bg)
+})
 
 ------------------------json함수 배열다수 each두번쓰기 예시1
 let data2=[
@@ -763,11 +789,47 @@ $.each(maindata, function (idx, item) {
     $("#show").append(s)
 })
 
+-----------------------------json함수 배열, each 두번쓰기 예시3
+let data=[
+    {"font":"Gamja Flower",bcolor:"pink",tcolor:"gray","message":"자바스크립트"},
+    {"font":"Jua",bcolor:"yellow",tcolor:"blue","message":"스프링부트"},
+    {"font":"Lobster",bcolor:"orange",tcolor:"black","message":"Happy Day!!"},
+    {"font":"Nanum Pen Script",bcolor:"#eee8aa",tcolor:"#db7093","message":"제이쿼리"},
+    {"font":"Single Day",bcolor:"#2e8b57",tcolor:"#e6e6fa","message":"오라클DB"},
+];
+$.each(data,function(idx,item){
+    // let s="<div style='background-color:"+item.bcolor+";color:"+item.tcolor+
+    // ";font-family:"+item.font+"'>"+item.message+"</div>";
+
+    let s=`<div style="background-color:${item.bcolor};color:${item.tcolor};
+    font-family:${item.font}">${item.message}</div>`
+    $("#show").append(s);
+});
+
+let data2=[
+    {"name":"김태희","score":[90,100,80],"hp":"010-222-3333"},
+    {"name":"한가인","score":[90,87,70],"hp":"010-444-5555"}
+];
+$.each(data2,function(idx,item){                  //이해 다시하기 C:\bit701naver\webwork\day0220\ex5_arrayeach.html
+    // let s2="이름:"+item.name+";점수3과목";
+    let s2=`이름:${item.name},점수3과목:`
+    $.each(item.score,function(idx2,jumsoo){
+        s2+=jumsoo+"&nbsp;";
+    });
+    // s2+="핸드폰:"+item.hp+"<br>";
+    s2+=`핸드폰:${item.hp}<br>`
+    $("#show2").append(s2);
+});
+});
+------------------------------------json함수 배열, each 두번쓰기 예시4
+C:\bit701naver\webwork\day0220\ex7_arrayeach.html //이해 다시하기
+
+
 ------------------------json함수 사진과 이름 적용 예시
-let todayhome = [{
-    "img":"사진경로",
-    "title":"제목"         
-}]    //반복
+let todayhome = [
+    {"img":"사진경로",
+    "title":"제목"}     
+]    //반복
 $.each(todayhome, function (idx, item) {
     let s = 
         `<figure>
@@ -780,11 +842,23 @@ $.each(todayhome, function (idx, item) {
             </figure>`
 $("#show").append(s)
 });
+----------------위와 같지만 다름----------
+let todayhome = {
+    "homeicon" : [
+    {"img":"사진경로",
+    "title":"제목"},         
+]    //반복
+$.each(todayhome.homeicon, function (idx, item) {
+            let s = `<figure>
+            <img src="${item.img}">
+            <figcaption>
+                <span>
+                    ${item.title}
+                    </span>
+                </figcaption>
+                </figure>`
 
 
-$("div.box>img").each(function(idx){
-    $(this).attr("src","../image/shop/"+(idx+1)+".jpg");
-})
 
 
 
