@@ -74,56 +74,24 @@
         <b>메세지 입력 : </b> <input type="text" class="text form-control" placeholder="메세지를 입력하세요">
     </div>
     <br><br>
+    <button type="button" class="btn btn-outline-secondary" id="btnresult">위의 옵션 모두 적용</button>
 
     <div class="box">asdf</div>
 
     <script>
-
-
-        $(".font1").click(function () {
-            // $(this).is(":checked") ? $(".box").css("font-weight", this.value) : $(".box").css("font-weight", "")
-            if($(this).is(":checked")){
-                $(".box").css("font-weight","bold")
-            }else{
-                $(".box").css("font-weight","normal")
-            }
-
+ 
+        //버튼 이벤트
+        $("#btnresult").click(function(){
+            $(".box").html($(".text").val());
+            //css적용
+            $(".box").css({
+                "font-weight":$(".font1").is(":checked")?"bold":"normal",
+                "font-style":$(".font2").is(":checked")?"italic":"normal",
+                "text-decoration":$(".font3").is(":checked")?"underline":"none",
+                "font-family":$("input[name='fontname']:checked").val(),
+                "font-size":$("input[name='fontsize']:checked").val()
+            })
         });
-
-        $(".font2").click(function () {
-            // $(this).is(":checked") ? $(".box").css("font-style", this.value) : $(".box").css("font-style", "")
-            if($(this).is(":checked")){
-                $(".box").css("font-style","italic")
-            }else{
-                $(".box").css("font-style","normal")
-            }
-        });
-
-        $(".font3").click(function () {
-            // $(this).is(":checked") ? $(".box").css("text-decoration", this.value) : $(".box").css("text-decoration", "")
-            if($(this).is(":checked")){
-                $(".box").css("text-decoration","underline")
-            }else{
-                $(".box").css("text-decoration","none")
-            }
-            
-        });
-
-        $(".font").click(function () {  //$("input[name='fontname']").click(function(){})
-            let f = $(this).val();
-            $(".box").css("font-family", f)
-        })
-
-        $(".size").click(function () {  //$("input[name='fontsize']").click(function(){})
-            let s = $(this).val();
-            $(".box").css("font-size", s);
-        })
-
-        $(".text").keyup(function (e) {
-            if (e.keyCode == 13) {
-                $(".box").html($(this).val()); //.html(this.value);
-            }
-        })
 
     </script>
 </body>
