@@ -3,7 +3,7 @@
 쉬프트 알트 + F = 정렬
 쉬프트 컨트롤 + 방향키 = 구간선택
 
-day2021부터 복습 다시********************************
+day0222부터 복습 다시********************************
 
 
 <!--BS5-->
@@ -19,8 +19,8 @@ day2021부터 복습 다시********************************
 </style>
 
 태그(요소 Element) : <>
-속성(Property): style src width 등 태그 안에 쓰는것.   : 뒤에는 Value(값(수치)가 와야됨).
-같은 속성을 주는 예시 ex) style="color:blue;background-color:balck" 처럼 여러개 쓸때는 사이에 ;
+속성(Property): style src width 등 태그 안에 쓰는것.   : 뒤에는 Value(값(수치)가 와야됨). 속성="값" 속성으로 줄때는 단위 안붙임
+같은 속성을 주는 예시 ex) style="color:blue;background-color:balck;font-size: 25px;cursor: pointer;" 처럼 여러개 쓸때는 사이에 ;
 
 함수=명령
 객체에 속해있는 함수=메소드
@@ -98,9 +98,26 @@ function(isNaN(A)){
 }
 setInterval(()=>{함수식},1000); //괄호 안 함수를 1초에 한번씩 반복
 
+-----------input----------
+<form><input type="N" ></form> input에 속성으로는 value(기본값), placeholder(원래 들어있는 희미한 글자), required(태그의 속성이 submit일때 데이터 입력하라고 알림)
+                                    checked(기본으로 선택되있는것)
+N == radio(name속성으로 묶을수있음), checkbox, text, color, date, number, submit 등이 온다  
+          $("input[name='color']:checked").val() 으로 name에 해당되는 값을 구할수도 있다
+$("form").submit(function(e){
+            e.preventDefault(); //기본 이벤트 무효화.
+                                //form의 기본 이벤트는 action이 호출되며 백엔드로 form태그 안의 데이터가 넘어간다
+let lic=$("checkbox").is(":checked")?"있음":"없음" //is(":checked")는 true/false 체크상태 반환. 
+checkbox는 val()은 무조건 on(value지정이 안된경우)  
+---모두선택하는checkbox예시
+ $("#Allcheckbox").click(function(){
+            //전체선택 체크박스의 체크 상태를 얻어낸다
+            // let allchk = $(#Allcheckbox).is(":checked"); //이거랑 아래랑 같음
+            let allchk = $(#Allcheckbox).prop("checked");       //전체선택 버튼이 checked의 상태(true,false)를 아래 버튼에 넣음 
+            $("input[name='check']").prop("checked",allchk)     // 아래 선택창에 영향을 줌
+        });
 
 
--Storage-
+-----------------Storage------------
 Web Storage:클라이언트의 브라우저에 소량의 데이터를 저장해두기 위한 기억공간(자바의 쿠키와 비슷)
 localStorage : 반영구적 보관 크기는 약 5mb
 sessionStorage : 세션이 유효한 만큼만 보관, 창 닫으면 사라짐
@@ -709,7 +726,7 @@ next():다음태그, prev():이전태그, find,children:하위태그에서 검�
 parent():부모태그, siblings():형제태그 //siblings("figcaption"):형제태그 중 figcaption
 parents("figure.photo")); //부모태그들 중 figure.photo
 
-jquery에서 attr은 <h1 style="magenta"> 에서 style에 접근. 값이 하나면 반환, 두개면 변경
+jquery에서 attr은 <h1 class="asdf "style="magenta" src="..image"> 에서 속성(class, style, src에 접근. 값이 하나면 반환, 두개면 변경
 jquery에서 prop는 true, false 값 변경시 사용. 값이 하나면 반환, 두개면 변경
 jquery에서 css는 css에 접근. 값이 하나면 반환, 두개면 추가
 
@@ -753,6 +770,22 @@ let b = parseInt(Math.random()*256);
 let bg=`rgb(${r},${g},${b})`;
 $(this).css("background-color",bg)
 })
+
+----------------------------------jquery에서 each문으로 반복하면서 라벨,input check 생성 예시
+<script>
+        let lang = ["Java", "HTML5", "CSS", "JavaScript", "ES6", "Spring Framework", "Spring Boot",
+            "Pythoon", "Git", "Oracle", "Linux", "Mysql", "JSP", "ThymeLeaf", "AWS", "Naver Cloud"];
+        let s2 = ""
+        $.each(lang, function (idx, item) {
+            s2 += `
+            <label class="lang">
+                <input type="checkbox" name="lang" value="${item}">${item}
+            </label>
+            `
+            if ((idx + 1) % 3 == 0) //3개마다 줄바꿈
+                s2 += "<br>"
+        });
+        document.write(s2);
 
 ------------------------json함수 배열다수 each두번쓰기 예시1
 let data2=[

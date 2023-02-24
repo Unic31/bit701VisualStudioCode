@@ -21,9 +21,8 @@
         img.photo {
             width: 60px;
             height: 60px;
-            cursor: pointer;
-            border-radius: 100px;
-            border: 1px solid gray;
+            cursor: pointer;          
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -100,10 +99,10 @@
                     
                     document.write(`
                 <tr>
-                    <td>${idx + 1}</td>
-                    <td>${item.foodname}</td>
-                    <td>${item.foodprice}</td>
-                    <td><img src="${item.foodsrc}" class='photo'
+                    <td align=center>${idx + 1}</td>
+                    <td align=center>${item.foodname}</td>
+                    <td align=center>${item.foodprice}원</td>
+                    <td><img src="${item.foodsrc}" class='photo img-thumbnail'
                         data-bs-toggle="modal"  data-bs-target="#myShopModal"></td>
                     </tr>
                     
