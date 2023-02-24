@@ -3,7 +3,7 @@
 쉬프트 알트 + F = 정렬
 쉬프트 컨트롤 + 방향키 = 구간선택
 
-day0222부터 복습 다시********************************
+day0223부터 복습 다시********************************
 
 
 <!--BS5-->
@@ -20,7 +20,7 @@ day0222부터 복습 다시********************************
 
 태그(요소 Element) : <>
 속성(Property): style src width 등 태그 안에 쓰는것.   : 뒤에는 Value(값(수치)가 와야됨). 속성="값" 속성으로 줄때는 단위 안붙임
-같은 속성을 주는 예시 ex) style="color:blue;background-color:balck;font-size: 25px;cursor: pointer;" 처럼 여러개 쓸때는 사이에 ;
+속성을 주는 예시 ex) style="color:blue;background-color:balck;font-size: 25px;cursor: pointer;" 처럼 여러개 쓸때는 사이에 ;
 
 함수=명령
 객체에 속해있는 함수=메소드
@@ -44,6 +44,12 @@ parentElement:부모태그
 
 display: flex;  부모태그에 주는것/* flex일경우 수평방향 가운데:flex-start,center,space-between,space-around,space-evenly */
 justify-content: space-around; /*아이템들의 "둘레(around)에 균일한 간격"*/
+
+//on:로딩시 존재하는 요소, 미래에 생성되는 요소 모두 적용 가능 //불안하면 이거쓰기
+    //순서 : 1이벤트 2:selector 3:function
+$(document).on("click","i.del",function(){
+    $(this).parents("figure").remove();
+})
             
 
 데이터타입:Number String Boolean(true, false)
@@ -74,6 +80,7 @@ console.log(`a=${a},b=${b}`);//1,2
 <pre></pre>   // 프리뷰(보이는 그대로 출력)
 <span></span>      //아무 기능 없음 line
 <div></div>         //아무 기능 없음 block
+background-image는 url('이미지주소')
 <img src="./이미지.jpg">          //현재 폴더의 이미지.jpg 가져오기
 <img src="./하위폴더/이미지.jpg">             //하위 폴더의 이미지.jpg 가져오기
 <img src="../상위폴더/이미지.jpg">               //상위 폴더의 이미지.jpg 가져오기
@@ -92,6 +99,8 @@ prompt("A","B")        //A는 출력되는 문구, B는 기입하는곳의 기�
 alert("A")          //A라는 알림창이 뜸
 overflow : hidden/*넘어가는 만큼 가림. 스크롤도 가능*/
 resize: both; /*사용자의 요소 크기 조정 권한 지정horizontal(옆으로만), vertical(밑으로만), both(위 아래 다 조정가능)*/
+z-index: N; //n이 작을수록 뒤 클수록 이미작 앞으로 온다
+
 isNaN(A)       //A가 숫자=false, 문자=ture
 function(isNaN(A)){
     A가 숫자가 아닐 경우 함수
@@ -101,7 +110,7 @@ setInterval(()=>{함수식},1000); //괄호 안 함수를 1초에 한번씩 반�
 -----------input----------
 <form><input type="N" ></form> input에 속성으로는 value(기본값), placeholder(원래 들어있는 희미한 글자), required(태그의 속성이 submit일때 데이터 입력하라고 알림)
                                     checked(기본으로 선택되있는것)
-N == radio(name속성으로 묶을수있음), checkbox, text, color, date, number, submit 등이 온다  
+N == range(크기조절바), radio(name속성으로 묶을수있음),checkbox, text, color, date, number, submit 등이 온다  
           $("input[name='color']:checked").val() 으로 name에 해당되는 값을 구할수도 있다
 $("form").submit(function(e){
             e.preventDefault(); //기본 이벤트 무효화.
@@ -396,8 +405,37 @@ var A = document.getElementById("B");      //A의 값은 "B"의 요소 라고 �
             //style 값 변경 시
          document.getElementById("animal").style.border=this.value;
         }
- </script>
 
+        
+        $(this).val(); = 선택한것의 value의 값
+        $("#selborder option : selected).text(); = 선택된 text의 값
+ </script>
+--------------select에서 여러 데이터 꺼내고 넣기 예시
+ <select id="sel3" class="form-select" style="width: 150px;">
+        <option value="../image/food/1.jpg,12000">햄샌드위치</option>
+        <option value="../image/food/2.jpg,19000">꼬치구이</option>
+        <option value="../image/food/11.jpg,23000">망고빙수</option>
+        <option value="../image/food/12.jpg,13000">순두부라면</option>
+</select>
+<div class="view3" style="font-size: 22px;"></div>
+    <script>
+        $("#sel3").change(function(){
+            //선택한 val값 얻기
+            let food = $(this).val();
+            let arr=food.split(",");// 밸류값 두가지를 , 로 분리하고 배열로 만듬
+            let foodSrc=arr[0] //배열 중 첫번째(이미지)
+            let foodPrice=arr[1]; //배열 중 두번째(가격)
+            // let foodName=$("#sel3 option:selected").text();
+            let foodName=$("option:selected",this).text();
+            
+            $(".view3").html(`
+                <img src ="${foodSrc}" width="200" border="1"><br>
+                <h5>${foodName}</h5>
+                <h5>${foodPrice}원</h5>
+            `);
+        });
+    </script>
+---------------------------------------------------------------
 
 A.onfocus = function () {      //A클릭시 발생하는 이벤트
 B.onblur = function () {	//B갔다가 B에서 벗어나 다른곳 클릭시 발생하는 이벤트
@@ -576,6 +614,11 @@ doccument.getElementById("ID").onkeyup = function(e){
 		document.querySelector("A").innerHTML = v; //엔터키 입력하고 출력
 	}
 }
+jquery에서 엔터 입력에 반응하는 함수식은
+$(this).keyup(function(e){
+    if(e.keyCode==13){ }
+})
+
 
 
 ----------------------------조건식--------------------------------------------
@@ -725,10 +768,18 @@ M == addClass("a") : a라는 클래스 추가
 next():다음태그, prev():이전태그, find,children:하위태그에서 검색
 parent():부모태그, siblings():형제태그 //siblings("figcaption"):형제태그 중 figcaption
 parents("figure.photo")); //부모태그들 중 figure.photo
+이벤트 animate({"width":"+=50px","height":"+=50px"},'slow');
+이벤트 animate({"width":"+=50px","height":"+=50px"}, 3000, function(){
+    -이벤트가 끝나고 다시 처리할 로직이나 효과 함수를 넣을수있음-
+})
+이벤트 effect종류(뒤에 다 () 써주고 안에 slow나 2000등 수치 넣을수 있음): hide-show-toggle, slideUp-slideDown-slideToggle, fadeOut-fadeIn-fadeToggle
 
 jquery에서 attr은 <h1 class="asdf "style="magenta" src="..image"> 에서 속성(class, style, src에 접근. 값이 하나면 반환, 두개면 변경
 jquery에서 prop는 true, false 값 변경시 사용. 값이 하나면 반환, 두개면 변경
 jquery에서 css는 css에 접근. 값이 하나면 반환, 두개면 추가
+
+jquery에서 두개의 이벤트 안의 로직이 같을경우 bind로 묶을 수 있다
+$("#photo").bind("mousemove change",function(){})
 
 ------------------------jquery 기본 함수 모양
 $("h1").mouseover(function () {
@@ -742,8 +793,8 @@ $("h1").mouseover(function () {
 
 
 --------------------------------jquery에서 hover예시
-$("img").hover(function(){     
-$(this).addClass("selected");  //mosueover
+$("img").hover(function(){    //mosueover 
+$(this).addClass("selected");  
 photo=$(this).attr("src"); //기존사진소스 저장, 자바스크립트에서 let안붙이면 자동으로 전역변수가 된다
 $(this).attr("src","../image/animal/C1.png"); //다른사진으로 변경
 },function(){
