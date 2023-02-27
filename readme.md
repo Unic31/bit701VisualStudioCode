@@ -47,3 +47,8 @@ git log
 git checkout A
 git merge B
 
+git에 그날 수업한 자료 올리려면(study 폴더에서 gitbash 를 연다)
+1. git add .
+2. git commit -m "메세지"
+3. git psuh origin master
+
