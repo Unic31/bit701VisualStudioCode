@@ -422,7 +422,7 @@ var A = document.getElementById("B");      //A의 값은 "B"의 요소 라고 �
         $("#sel3").change(function(){
             //선택한 val값 얻기
             let food = $(this).val();
-            let arr=food.split(",");// 밸류값 두가지를 , 로 분리하고 배열로 만듬
+            let arr=food.split(",");// 밸류값을 , 로 분리하고 배열로 만듬
             let foodSrc=arr[0] //배열 중 첫번째(이미지)
             let foodPrice=arr[1]; //배열 중 두번째(가격)
             // let foodName=$("#sel3 option:selected").text();
@@ -491,7 +491,7 @@ for(var a of arr)  //var a of arr 은 arr을 a에 담는다는 뜻. 배열에 �
     document.write(`<div>${a}</div>)
 
 배열-for in        //자동으로 갯수만큼 반복
-fonr(var idx in arr)   //arr의 데이터의 인덱스 값이 idx 로 넘어간다. 0, 1, 2, 3....
+for(var idx in arr)   //arr의 데이터의 인덱스 값이 idx 로 넘어간다. 0, 1, 2, 3....
     document.write(`<div>${idx}:${arr[idx]}</div>`)
 
 *********************************배열 예시**************************************

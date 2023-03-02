@@ -22,28 +22,13 @@
 </head>
 
 <body>
-    <input type="text" class="t1">
-    <input type="text" class="t2">
-    <input type="text" class="t3">
-    <button type="button" id="btn" class="btn btn-outline-danger">계산</button>
-    <div></div>
-
+    <img src="../image/animal/C8.png" id="photo">
     <script>
-        $(".t1").keyup(function () {
-            t1 = $(this).val();
-            console.log(t1)
-        })
-        $(".t2").keyup(function () {
-            t2 = $(this).val();
-        })
-        $(".t3").keyup(function () {
-            t3 = $(this).val();
-        })
-        $("#btn").click(function () {
-            $("div").html(`
-            점수의 합계는 ${Number(t1) + Number(t2) + Number(t3)} 이고
-            평균은 ${(Number(t1) + Number(t2) + Number(t3)) / 3} 이다.
-            `)
+        $("#photo").hover(function(){
+            img = $(this).attr("src")
+            $(this).attr("src","../image/animal/C2.png")
+        },function(){
+            $(this).attr("src",img)
         })
     </script>
 </body>

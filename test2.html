@@ -22,29 +22,33 @@
 </head>
 
 <body>
-    <input type="text" class="t1">
-    <input type="text" class="t2">
-    <input type="text" class="t3">
-    <button type="button" id="btn" class="btn btn-outline-danger">계산</button>
+    
     <div></div>
-
+    
+    <div></div>
+    
+    <div></div>
+    
+    <div></div>
     <script>
-        $(".t1").keyup(function () {
-            t1 = $(this).val();
-            console.log(t1)
-        })
-        $(".t2").keyup(function () {
-            t2 = $(this).val();
-        })
-        $(".t3").keyup(function () {
-            t3 = $(this).val();
-        })
-        $("#btn").click(function () {
-            $("div").html(`
-            점수의 합계는 ${Number(t1) + Number(t2) + Number(t3)} 이고
-            평균은 ${(Number(t1) + Number(t2) + Number(t3)) / 3} 이다.
+        let colors = "red,blue,green,magenta,orange,pink"
+        let color = colors.split(",")
+
+        
+        $("div").css({
+                "width": "100px",
+                "height": "100px",
+                "border": "2px solid gray",
+                "float": "left"
+            })
+        for (i = 0; i < color.length; i++) {
+            document.write(`
+            <div style="background-color:${color[i]}"></div>
             `)
-        })
+            $("div").css("background-color",`${color[i]}`).css("width","200px").css("height", "100px")
+        }
+
+
     </script>
 </body>
 
